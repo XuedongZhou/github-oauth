@@ -1,0 +1,34 @@
+{
+  "name": "nextjs",
+  "version": "1.0.0",
+  "description": "next.js+OAuth仿Github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "XuedongZhou",
+  "license": "MIT",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^3.26.11",
+    "axios": "^0.19.2",
+    "babel-plugin-import": "^1.13.0",
+    "ioredis": "^4.14.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-router": "^8.0.8",
+    "koa-session": "^5.13.1",
+    "lru-cache": "^5.1.1",
+    "moment": "^2.24.0",
+    "next": "^9.2.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  }
+}
