@@ -3,13 +3,9 @@ import { Button, Icon, Tabs } from 'antd'
 import getConfig from 'next/config'
 import { connect } from 'react-redux'
 import Router, { withRouter } from 'next/router'
-import LRU from 'lru-cache'
 
 import Repo from '../components/Repo'
-
-const cache = new LRU({
-  maxAge: 1000 * 60 * 10
-})
+import { CACHE_REPO, getCache, cacheArray } from '../lib/repo-basic-cache'
 
 const api = require('../lib/api')
 
@@ -27,10 +23,12 @@ function Index({ userRepos, userStarredRepos, user, router }) {
   useEffect(() => {
     if (!isServer) {
       if (userRepos) {
-        cache.set('userRepos', userRepos)
+        CACHE_REPO.set('userRepos', userRepos)
+        cacheArray(userRepos)
       }
       if (userStarredRepos) {
-        cache.set('userStarredRepos', userStarredRepos)
+        CACHE_REPO.set('userStarredRepos', userStarredRepos)
+        cacheArray(userStarredRepos)
       }
     }
   }, [userRepos, userStarredRepos])
@@ -117,10 +115,14 @@ Index.getInitialProps = async ({ ctx, reduxStore }) => {
   }
 
   if (!isServer) {
-    if (cache.get('userRepos') && cache.get('userStarredRepos')) {
+    if (getCache('userRepos') && getCache('userStarredRepos')) {
+      console.log({
+        userRepos: getCache('userRepos'),
+        userStarredRepos: getCache('userStarredRepos'),
+      })
       return {
-        userRepos: cache.get('userRepos'),
-        userStarredRepos: cache.get('userStarredRepos'),
+        userRepos: getCache('userRepos'),
+        userStarredRepos: getCache('userStarredRepos'),
       }
     }
   }
