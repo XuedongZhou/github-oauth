@@ -30,7 +30,7 @@ app.prepare().then(() => {
 
   const SESSION_CONFIG = {
     key: 'dong',
-    maxAge: 12 * 60 * 60 * 1000,
+    maxAge: 60 * 60 * 1000,
     store: new RedisSessionStore(redis)
   }
 
